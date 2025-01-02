@@ -30,6 +30,7 @@ import ListedRoomForm, { ListRoomForm } from "./components/rooms/ListRoom";
 import { ToastContainer } from "react-toastify";
 import ForgetPass from "./components/ForgetPass";
 import LandLords from "./components/LandLords";
+import AdminRegister from "./components/AdminRegister";
 function App() {
   return (
     <UserProvider>
@@ -98,6 +99,10 @@ function App() {
                 <Route
                   path="/landlords"
                   element={<PrivateRouteLogIn element={<LandLords />} />}
+                />
+                <Route
+                  path="/admin/register"
+                  element={<PrivateRouteLogOut element={<AdminRegister />} />}
                 />
               </Routes>
             </main>
