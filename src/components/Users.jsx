@@ -15,7 +15,7 @@ const Users = () => {
       setLoading(true); // Set loading to true when starting the fetch operation
       try {
         const response = await axios.post(
-          ` ${import.meta.env.VITE_ADMIN_API_URI}/get/users`,
+          ` ${import.meta.env.VITE_API_URI}/admin/get/users`,
           {},
           { withCredentials: true }
         );

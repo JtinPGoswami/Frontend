@@ -13,7 +13,7 @@ const useListedRoom = (ownerID) => {
       setLoading(true);
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_USER_API_URI}/get/landlord/rooms`,
+          `${import.meta.env.VITE_API_URI}/user/get/landlord/rooms`,
           { userId: ownerID },
           { withCredentials: true }
         );
@@ -43,7 +43,7 @@ const useListedRoomByUser = (userId) => {
       setLoading(true);
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_USER_API_URI}/get/landlord/rooms`,
+          `${import.meta.env.VITE_API_URI}/user/get/landlord/rooms`,
           { userId },
           { withCredentials: true }
         );

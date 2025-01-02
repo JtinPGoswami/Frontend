@@ -22,7 +22,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_USER_API_URI}/get/all/rooms`
+          `${import.meta.env.VITE_API_URI}/user/get/all/rooms`
         );
         setRooms(response.data.data);
       } catch (error) {
@@ -39,7 +39,7 @@ const Home = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          ` ${import.meta.env.VITE_USER_API_URI}/get/landlords`
+          ` ${import.meta.env.VITE_API_URI}/user/get/landlords`
         );
         setLandLords(response.data.data);
       } catch (error) {

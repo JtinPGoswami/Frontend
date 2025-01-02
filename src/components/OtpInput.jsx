@@ -57,7 +57,7 @@ const OTPInput = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/verify/email`,
+        `${import.meta.env.VITE_API_URI}/user/verify/email`,
         { inputOtp },
         { withCredentials: true }
       );

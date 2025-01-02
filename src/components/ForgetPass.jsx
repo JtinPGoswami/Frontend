@@ -52,7 +52,7 @@ function ForgetPass({ className, ...props }) {
     setLoading(true);
     try {
       await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/verify/pass/code`,
+        `${import.meta.env.VITE_API_URI}/user/verify/pass/code`,
         formData,
         { withCredentials: true }
       );
@@ -88,7 +88,7 @@ function ForgetPass({ className, ...props }) {
     setLoading(true);
     try {
       await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/send/pass/code`,
+        `${import.meta.env.VITE_API_URI}/user/send/pass/code`,
         formData,
         { withCredentials: true }
       );

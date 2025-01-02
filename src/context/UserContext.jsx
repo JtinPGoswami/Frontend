@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_USER_API_URI}/current/user`,
+          `${import.meta.env.VITE_API_URI}/user/current/user`,
           { withCredentials: true }
         );
         setUser(response.data?.data || null); // Set user from backend

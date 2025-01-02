@@ -30,13 +30,13 @@ function LoginForm({ className, ...props }) {
     setLoading(true);
     try {
       const fatch = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/get/user`,
+        `${import.meta.env.VITE_API_URI}/user/get/user`,
         formData
       );
 
       if (fatch.data.data.isVerified) {
         const response = await axios.post(
-          `${import.meta.env.VITE_USER_API_URI}/login`,
+          `${import.meta.env.VITE_API_URI}/user/login`,
           formData,
           { withCredentials: true }
         );
@@ -56,7 +56,7 @@ function LoginForm({ className, ...props }) {
         navigate("/profile");
       } else {
         const response = await axios.post(
-          `${import.meta.env.VITE_USER_API_URI}/resend/var/code`,
+          `${import.meta.env.VITE_API_URI}/user/resend/var/code`,
           formData
         );
         toast.success("Verification Email sent successfully", {

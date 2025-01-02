@@ -23,7 +23,7 @@ const DeleteRoomByAdmin = () => {
   const handleDeletion = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_ADMIN_API_URI}/delete/room`,
+        `${import.meta.env.VITE_API_URI}/admin/delete/room`,
         { roomId, message, userId },
         { withCredentials: true }
       );

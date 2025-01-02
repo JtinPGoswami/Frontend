@@ -25,7 +25,7 @@ const Usercard = ({ user, deleteUserCallback }) => {
     setConfirmation(false);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_ADMIN_API_URI}/delete/user`,
+        `${import.meta.env.VITE_API_URI}/admin/delete/user`,
         { userId: user._id },
         { withCredentials: true }
       );

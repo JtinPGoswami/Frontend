@@ -31,7 +31,7 @@ const UpdateRoomImages = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/update/room/images`,
+        `${import.meta.env.VITE_API_URI}/user/update/room/images`,
         formData,
         {
           headers: {

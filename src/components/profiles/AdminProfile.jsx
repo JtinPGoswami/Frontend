@@ -27,7 +27,7 @@ const AdminProfile = ({ user }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        ` ${import.meta.env.VITE_USER_API_URI}/update/profilepic`,
+        ` ${import.meta.env.VITE_API_URI}/user/update/profilepic`,
         formData,
         {
           withCredentials: true,

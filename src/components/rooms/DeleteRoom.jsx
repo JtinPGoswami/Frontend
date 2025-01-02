@@ -11,7 +11,7 @@ const DeleteRoom = () => {
   const handleDeletion = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/delete/room`,
+        `${import.meta.env.VITE_API_URI}/user/delete/room`,
         { roomId },
         { withCredentials: true }
       );

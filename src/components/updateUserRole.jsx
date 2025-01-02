@@ -29,7 +29,7 @@ const UpdateUserRole = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/send/role-update/email`,
+        `${import.meta.env.VITE_API_URI}/user/send/role-update/email`,
         {},
         { withCredentials: true }
       );
@@ -78,8 +78,8 @@ const UpdateUserRole = () => {
     try {
       const endpoint =
         role === "landlord"
-          ? `${import.meta.env.VITE_USER_API_URI}/update/to-seeker`
-          : `${import.meta.env.VITE_USER_API_URI}/update/to-landlord`;
+          ? `${import.meta.env.VITE_API_URI}/user/update/to-seeker`
+          : `${import.meta.env.VITE_API_URI}/user/update/to-landlord`;
 
       const response = await axios.post(endpoint, formData, {
         withCredentials: true,

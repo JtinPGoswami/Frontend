@@ -25,7 +25,7 @@ const RoomSeekerProfile = ({ user }) => {
     setLoading(true); // Start loading
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/update/profilepic`, // Ensure this endpoint matches the backend route
+        `${import.meta.env.VITE_API_URI}/user/update/profilepic`, // Ensure this endpoint matches the backend route
         formData,
         {
           withCredentials: true,

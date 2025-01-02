@@ -11,7 +11,7 @@ const ResendVerificationButton = ({ formData }) => {
     setTimer(60);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/resend/var/code`,
+        `${import.meta.env.VITE_API_URI}/user/resend/var/code`,
         formData
       );
       toast.success("Verification email resent!", {

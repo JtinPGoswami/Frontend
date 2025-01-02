@@ -26,7 +26,7 @@ const AdminRegister = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_ADMIN_API_URI}/register`,
+        `${import.meta.env.VITE_API_URI}/admin/register`,
         formData
       );
       setFormData({

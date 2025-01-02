@@ -11,7 +11,7 @@ const GetLogInUser = () => {
     const getLogInUser = async () => {
       try {
         const response = await axios.get(
-          ` ${import.meta.env.VITE_USER_API_URI}/current/user`,
+          ` ${import.meta.env.VITE_API_URI}/user/current/user`,
           {},
           { withCredentials: true }
         );

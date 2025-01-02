@@ -23,7 +23,7 @@ const UpdatePassword = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/update/password`,
+        `${import.meta.env.VITE_API_URI}/user/update/password`,
         password,
         { withCredentials: true }
       );

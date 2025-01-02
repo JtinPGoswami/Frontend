@@ -64,7 +64,7 @@ export function ListRoomForm() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_USER_API_URI}/list/room`,
+        `${import.meta.env.VITE_API_URI}/user/list/room`,
         formDataToSend,
         {
           withCredentials: true,

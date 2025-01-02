@@ -8,7 +8,7 @@ const DeleteUser = () => {
   const deleteUser = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_ADMIN_API_URI}/delete/user`,
+        `${import.meta.env.VITE_API_URI}/admin/delete/user`,
         { userId: selectedUser },
         { withCredentials: true }
       );

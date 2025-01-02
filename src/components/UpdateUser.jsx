@@ -46,7 +46,7 @@ const updateUser = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        ` ${import.meta.env.VITE_USER_API_URI}/update/user`,
+        ` ${import.meta.env.VITE_API_URI}/user/update/user`,
         formData,
         {
           withCredentials: true,
