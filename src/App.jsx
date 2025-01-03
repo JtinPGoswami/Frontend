@@ -107,7 +107,7 @@ function App() {
                 <Route
                   path="/update/room/details"
                   element={
-                    <PrivateRouteLogOut element={<UpdateRoomDetails />} />
+                    <PrivateRouteLandlord element={<UpdateRoomDetails />} />
                   }
                 />
 
