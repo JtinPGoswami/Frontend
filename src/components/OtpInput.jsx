@@ -19,7 +19,6 @@ const OTPInput = () => {
       newOtp[index] = value;
       setOtp(newOtp);
 
-      // Move to the next input field
       if (value !== "" && index < 5) {
         inputRefs.current[index + 1].focus();
       }
@@ -45,7 +44,6 @@ const OTPInput = () => {
 
     setOtp(newOtp);
 
-    // Focus the next empty input field
     const nextIndex = pasteData.length < 6 ? pasteData.length : 5;
     inputRefs.current[nextIndex]?.focus();
   };

@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Spinner from "../../utils/Spinner"; // Adjust the import path based on your folder structure
+import Spinner from "../../utils/Spinner";
 import { useUser } from "../../context/UserContext";
 import { toast } from "react-toastify";
 
 const RoomSeekerProfile = ({ user }) => {
   const { setRole, setUser } = useUser();
   setRole(user.role);
-  const [profilePic, setProfilePic] = useState(user.ProfilePic); // State to hold the profile picture
-  const [loading, setLoading] = useState(false); // State for loading spinner
+  const [profilePic, setProfilePic] = useState(user.ProfilePic);
+  const [loading, setLoading] = useState(false);
 
   const handleProfilePicUpdate = () => {
-    document.getElementById("profilePicInput").click(); // Trigger the file input click
+    document.getElementById("profilePicInput").click();
   };
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (!file) return; // Exit if no file is selected
+    if (!file) return;
 
     const formData = new FormData();
-    formData.append("profilePic", file); // Match the backend expected key as "file"
+    formData.append("profilePic", file);
 
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URI}/user/update/profilepic`, // Ensure this endpoint matches the backend route
+        `${import.meta.env.VITE_API_URI}/user/update/profilepic`,
         formData,
         {
           withCredentials: true,
@@ -33,7 +33,7 @@ const RoomSeekerProfile = ({ user }) => {
       );
 
       if (response.data.data && response.data.data.newuser.ProfilePic) {
-        setProfilePic(response.data.data.newuser.ProfilePic); // Update profile picture state with the new URL
+        setProfilePic(response.data.data.newuser.ProfilePic);
         setUser(response.data.data.newuser);
         toast.success("Profile Pic update successfully", {
           position: "top-right",
@@ -51,7 +51,7 @@ const RoomSeekerProfile = ({ user }) => {
     } catch (error) {
       console.error("Error updating profile picture:", error);
     } finally {
-      setLoading(false); // Stop loading in both success and error cases
+      setLoading(false);
     }
   };
 
@@ -66,9 +66,9 @@ const RoomSeekerProfile = ({ user }) => {
               <h2 className="text-3xl font-bold  text-primary">Profile</h2>
               <Link
                 to="/update/role"
-                className="text-blue-400 underline hover:no-underline"
+                className="text-blue-400 underline text-sm hover:no-underline"
               >
-                Be a Room Seeker!
+                Be a Land Lord!
               </Link>
             </div>
 

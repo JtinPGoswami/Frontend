@@ -15,7 +15,6 @@ const Header = () => {
     const logOutUser = await Logout();
   };
 
-  // Close sidebar on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -29,7 +28,6 @@ const Header = () => {
     };
   }, []);
 
-  // Close menu when clicking a link
   const handleMenuItemClick = () => {
     setIsMenuOpen(false);
   };

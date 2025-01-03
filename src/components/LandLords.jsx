@@ -4,7 +4,7 @@ import LandLordCard from "./LandLordCard";
 import Spinner from "../utils/Spinner";
 
 const LandLords = () => {
-  const [LandLords, setLandLords] = useState([]); // State for landlords
+  const [LandLords, setLandLords] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getLandLords = async () => {

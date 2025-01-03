@@ -9,11 +9,11 @@ const ListedRooms = () => {
   const { role, user, selectedUser } = useUser();
 
   const { rooms, loading } =
-    role === "landlord" && user.rooms?.length > 0 // Fetch only if landlord has at least one room
+    role === "landlord" && user.rooms?.length > 0
       ? useListedRoom(user?._id)
       : role !== "landlord"
       ? useListedRoomByUser(selectedUser)
-      : { rooms: [], loading: false }; // Fallback for landlords with no rooms
+      : { rooms: [], loading: false };
 
   if (loading) {
     return (

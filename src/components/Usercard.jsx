@@ -2,13 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router";
-import Spinner from "../utils/Spinner"; // Import Spinner
+import Spinner from "../utils/Spinner";
 import { toast } from "react-toastify";
 
 const Usercard = ({ user, deleteUserCallback }) => {
   const navigate = useNavigate();
   const [confirmation, setConfirmation] = useState(false);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const { setSelectedUser } = useUser();
 
   const handleButtonClick = (user) => {
@@ -21,7 +21,7 @@ const Usercard = ({ user, deleteUserCallback }) => {
   };
 
   const deleteUser = async () => {
-    setLoading(true); // Set loading to true when starting the delete operation
+    setLoading(true);
     setConfirmation(false);
     try {
       const response = await axios.post(
@@ -39,11 +39,11 @@ const Usercard = ({ user, deleteUserCallback }) => {
         progress: undefined,
         theme: "light ",
       });
-      deleteUserCallback(user._id); // Update the parent component
+      deleteUserCallback(user._id);
     } catch (error) {
       console.log("error while deleting user ", error);
     } finally {
-      setLoading(false); // Set loading to false when the operation is complete
+      setLoading(false);
     }
   };
 

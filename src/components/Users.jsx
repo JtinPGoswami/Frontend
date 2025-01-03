@@ -1,18 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useUser } from "../context/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
-import Spinner from "../utils/Spinner"; // Import Spinner
+import Spinner from "../utils/Spinner";
 import Usercard from "./Usercard.jsx";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getAllUsers = async () => {
-      setLoading(true); // Set loading to true when starting the fetch operation
+      setLoading(true);
       try {
         const response = await axios.post(
           ` ${import.meta.env.VITE_API_URI}/admin/get/users`,
@@ -30,7 +29,6 @@ const Users = () => {
     getAllUsers();
   }, []);
 
-  // Handle user deletion in parent component
   const deleteUserCallback = (userId) => {
     setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
   };

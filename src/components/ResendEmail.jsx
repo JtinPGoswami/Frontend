@@ -43,7 +43,7 @@ const ResendVerificationButton = ({ formData }) => {
         });
       }, 1000);
     }
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [isDisabled]);
 
   return (

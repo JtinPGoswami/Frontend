@@ -11,7 +11,7 @@ const UpdateUserRole = () => {
   const [getOtp, setGetOtp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [timer, setTimer] = useState(0); // Timer state
+  const [timer, setTimer] = useState(0);
   const [formData, setFormData] = useState({
     gender: "male",
     age: "",
@@ -34,7 +34,7 @@ const UpdateUserRole = () => {
         { withCredentials: true }
       );
       setGetOtp(true);
-      setTimer(120); // Start a 2-minute timer
+      setTimer(120);
       toast.success("Verification email send successfully", {
         position: "top-right",
         autoClose: 3000,
@@ -69,7 +69,7 @@ const UpdateUserRole = () => {
         setTimer((prev) => prev - 1);
       }, 1000);
     }
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval);
   }, [timer]);
 
   const handleSubmit = async (e) => {

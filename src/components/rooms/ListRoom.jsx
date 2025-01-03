@@ -42,7 +42,6 @@ export function ListRoomForm() {
 
     const formDataToSend = new FormData();
 
-    // Append form data fields to FormData
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("location", formData.location);

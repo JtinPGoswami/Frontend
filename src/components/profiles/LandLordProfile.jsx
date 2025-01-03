@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import ListedRooms from "../rooms/ListedRoom";
 import axios from "axios";
-import Spinner from "../../utils/Spinner"; // Adjust the import path based on your folder structure
+import Spinner from "../../utils/Spinner";
 import { useUser } from "../../context/UserContext";
 import { toast } from "react-toastify";
 import GetLogInUser from "../../utils/GetLogInUser";
@@ -23,12 +23,12 @@ const LandLordProfile = ({ user }) => {
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    if (!file) return; // Exit if no file is selected
+    if (!file) return;
 
     const formData = new FormData();
-    formData.append("profilePic", file); // Match the backend expected key as "file"
+    formData.append("profilePic", file);
 
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URI}/user/update/profilepic`,
@@ -39,7 +39,7 @@ const LandLordProfile = ({ user }) => {
       );
 
       if (response.data.data && response.data.data.newuser.ProfilePic) {
-        setProfilePic(response.data.data.newuser.ProfilePic); // Update profile picture state with the new URL
+        setProfilePic(response.data.data.newuser.ProfilePic);
         setUser(response.data.data.newuser);
         toast.success("Profile Pic update successfully ", {
           position: "top-right",
@@ -57,7 +57,7 @@ const LandLordProfile = ({ user }) => {
     } catch (error) {
       console.error("Error updating profile picture:", error);
     } finally {
-      setLoading(false); // Stop loading in both success and error cases
+      setLoading(false);
     }
   };
 

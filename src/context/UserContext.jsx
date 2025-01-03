@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
     try {
       return savedUser ? JSON.parse(savedUser) : null;
     } catch (e) {
-      return null; // If there's an error parsing, return null
+      return null;
     }
   });
 
@@ -26,15 +26,15 @@ export const UserProvider = ({ children }) => {
           `${import.meta.env.VITE_API_URI}/user/current/user`,
           { withCredentials: true }
         );
-        setUser(response.data?.data || null); // Set user from backend
+        setUser(response.data?.data || null);
       } catch (error) {
         console.error("Failed to fetch user:", error);
-        setUser(null); // Set user to null if fetching fails
+        setUser(null);
       }
     };
 
     fetchUser();
-  }, []); // Run only once on initial load
+  }, []);
 
   useEffect(() => {
     if (role) {

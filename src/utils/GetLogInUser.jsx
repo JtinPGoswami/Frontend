@@ -15,11 +15,11 @@ const GetLogInUser = () => {
           {},
           { withCredentials: true }
         );
-        setUser(response.data?.data || null); // Update user state if logged in
+        setUser(response.data?.data || null);
       } catch (error) {
         console.error("Error fetching the current user:", error);
         if (!user) {
-          navigate("/login", { replace: true }); // Redirect to login only if not already done
+          navigate("/login", { replace: true });
         }
       }
     };

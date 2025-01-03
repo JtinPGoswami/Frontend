@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// Custom hook for fetching rooms for the current landlord
 const useListedRoom = (ownerID) => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +30,6 @@ const useListedRoom = (ownerID) => {
   return { rooms, loading };
 };
 
-// Custom hook for fetching rooms for a specific user
 const useListedRoomByUser = (userId) => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);

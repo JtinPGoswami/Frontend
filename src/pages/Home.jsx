@@ -6,11 +6,9 @@ import Spinner from "../utils/Spinner";
 import LandLordCard from "../components/LandLordCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Contect from "./Contact";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import required modules
 import { Pagination, Autoplay } from "swiper/modules";
 const Home = () => {
   const [rooms, setRooms] = useState([]);

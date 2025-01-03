@@ -81,7 +81,7 @@ function UpdateRoomDetails() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex lg:w-1/2 md:w-3/4 w-[90%] mx-auto min-h-screen bg-background ">
+        <div className="flex lg:w-1/2 md:w-3/4 w-[95%] mx-auto min-h-screen bg-background ">
           <div className="w-full rounded-lg bg-card shadow-md p-8">
             <h2 className="text-2xl font-bold text-center text-primary mb-6">
               List a Room
