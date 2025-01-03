@@ -29,7 +29,7 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     const apiURI =
-      role === "Landlord" ? "user/register/landlord" : "user/register/seeker";
+      role === "Landlord" ? "/user/register/landlord" : "/user/register/seeker";
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URI}${apiURI}`,
