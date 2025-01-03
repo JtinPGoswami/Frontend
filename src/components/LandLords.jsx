@@ -15,7 +15,7 @@ const LandLords = () => {
         );
         setLandLords(response.data.data);
       } catch (error) {
-        console.log("Error while fetching LandLords");
+        console.log("Error while fetching LandLords", error);
       } finally {
         setLoading(false);
       }

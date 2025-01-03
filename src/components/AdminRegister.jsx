@@ -53,6 +53,7 @@ const AdminRegister = () => {
       setMessage(
         error.response?.data?.message || "An error occurred. Please try again."
       );
+      console.log("Reistreation failed ", error);
     } finally {
       setLoading(false);
     }
