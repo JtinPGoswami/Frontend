@@ -204,15 +204,17 @@ function ForgetPass({ className, ...props }) {
                   </div>
                 )}
                 {sendmail ? (
-                  <Button onClick={handleSubmit} className="w-full">
-                    Change Password
-                  </Button>
+                  <div className="w-4/5 mb-2  mx-auto flex  flex-col justify-center gap-y-4 items-center">
+                    <Button onClick={handleSubmit} className="w-full">
+                      Change Password
+                    </Button>
+                    <ResendPasswordVerificationButton formData={formData} />
+                  </div>
                 ) : (
                   <div className="w-4/5 mb-2  mx-auto flex  flex-col justify-center gap-y-4 items-center">
                     <Button onClick={handleSendMail} className="w-full">
                       Send OTP
                     </Button>
-                    <ResendPasswordVerificationButton formData={formData} />
                   </div>
                 )}
               </div>

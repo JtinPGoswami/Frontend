@@ -91,7 +91,7 @@ export function ListRoomForm() {
   };
 
   return (
-    <div className="flex lg:w-1/2 md:w-3/4 w-[90%] mx-auto  bg-background ">
+    <div className="flex lg:w-1/2 md:w-3/4 sm:w-[90%] w-[97%] mx-auto  bg-background ">
       <div className="w-full rounded-lg bg-card shadow-md p-8">
         {loading ? (
           <Spinner />

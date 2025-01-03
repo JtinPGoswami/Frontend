@@ -230,7 +230,7 @@ const UpdateUserRole = () => {
               className="w-full rounded-lg bg-primary px-4 py-2 text-primary-foreground"
               disabled={timer > 0 || isLoading}
             >
-              {timer > 0 ? "Please wait..." : "Resend Code"}
+              {timer > 0 ? "Please wait..." : "Send Code"}
             </button>
           )}
           {getOtp && (

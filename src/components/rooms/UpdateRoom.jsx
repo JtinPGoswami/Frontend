@@ -5,7 +5,7 @@ import { useRoom } from "../../context/RoomContext";
 import Spinner from "../../utils/Spinner";
 import { toast } from "react-toastify";
 
-export function UpdateRoomDetails() {
+function UpdateRoomDetails() {
   const navigate = useNavigate();
   const { selectedRoom } = useRoom();
   const [loading, setLoading] = useState(false);
