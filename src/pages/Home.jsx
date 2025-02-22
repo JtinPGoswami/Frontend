@@ -25,15 +25,7 @@ const Home = () => {
           `${import.meta.env.VITE_API_URI}/user/get/all/rooms`
         );
         setRooms(response.data.data);
-        toast.success("Rooms loaded successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
+       
       } catch (error) {
         toast.error("Failed to load rooms. Please try again.", {
           position: "top-right",
@@ -60,15 +52,7 @@ const Home = () => {
           `${import.meta.env.VITE_API_URI}/user/get/landlords`
         );
         setLandLords(response.data.data);
-        toast.success("Landlords loaded successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
+       
       } catch (error) {
         toast.error("Failed to load landlords. Please try again.", {
           position: "top-right",
