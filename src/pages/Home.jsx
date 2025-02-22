@@ -27,15 +27,7 @@ const Home = () => {
         setRooms(response.data.data);
        
       } catch (error) {
-        toast.error("Failed to load rooms. Please try again.", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
+       
       } finally {
         setLoading(false);
       }
@@ -54,15 +46,7 @@ const Home = () => {
         setLandLords(response.data.data);
        
       } catch (error) {
-        toast.error("Failed to load landlords. Please try again.", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
+        
       } finally {
         setLoading(false);
       }
