@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Spinner from "../utils/Spinner";
 import Usercard from "./Usercard.jsx";
 
@@ -14,14 +15,23 @@ const Users = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          ` ${import.meta.env.VITE_API_URI}/admin/get/users`,
+          `${import.meta.env.VITE_API_URI}/admin/get/users`,
           {},
           { withCredentials: true }
         );
 
         setUsers(response.data.data || []);
       } catch (error) {
-        console.log("something went wrong while fetching users", error);
+        toast.error(`Error fetching users: ${error.response?.data?.message || "Something went wrong!"}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } finally {
         setLoading(false);
       }

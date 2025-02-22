@@ -70,7 +70,6 @@ function UpdateRoomDetails() {
         progress: undefined,
         theme: "light ",
       });
-      console.error("Error updating room:", error);
     } finally {
       setLoading(false);
     }

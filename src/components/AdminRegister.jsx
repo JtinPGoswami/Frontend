@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../utils/Spinner";
 import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa";
+import { BiSolidHide } from "react-icons/bi";
 
 const AdminRegister = () => {
   const [message, setMessage] = useState("");
@@ -14,7 +16,9 @@ const AdminRegister = () => {
     password: "",
     adminSecret: "",
   });
+
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +33,7 @@ const AdminRegister = () => {
         `${import.meta.env.VITE_API_URI}/admin/register`,
         formData
       );
+
       setFormData({
         username: "",
         name: "",
@@ -38,7 +43,7 @@ const AdminRegister = () => {
       });
 
       setMessage(response.data.message || "Registration successful!");
-      toast.success("Registration successful", {
+      toast.success("Registration successful!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -46,20 +51,28 @@ const AdminRegister = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
+
       navigate("/verify/email", { state: formData });
     } catch (error) {
-      setMessage(
-        error.response?.data?.message || "An error occurred. Please try again."
-      );
-      console.log("Reistreation failed ", error);
+      const errorMessage =
+        error.response?.data?.message || "An error occurred. Please try again.";
+      setMessage(errorMessage);
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       setLoading(false);
     }
   };
-
-  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
@@ -130,22 +143,27 @@ const AdminRegister = () => {
                 >
                   Password
                 </label>
-                <div className="flex justify-between items-center gap-3">
+                <div className="flex items-center gap-3 rounded-md border bg-background px-3 py-2 text-sm focus:ring-ring">
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1"
+                    className="block w-full bg-transparent outline-none border-none"
                     required
                   />
-                  <img
-                    src={showPassword ? "/openeye.svg" : "/closeeye.svg"}
-                    alt="Toggle Password Visibility"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className=" cursor-pointer w-5 h-5"
-                  />
+                  {showPassword ? (
+                    <BiSolidHide
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  ) : (
+                    <FaEye
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => setShowPassword(!showPassword)}
+                    />
+                  )}
                 </div>
               </div>
               <div className="mb-4">

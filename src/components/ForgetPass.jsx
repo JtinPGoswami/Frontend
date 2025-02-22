@@ -9,7 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../utils/Spinner";
 import { toast } from "react-toastify";
 import ResendPasswordVerificationButton from "./ResendPassVerCode";
-
+import { FaEye } from "react-icons/fa";
+import { BiSolidHide } from "react-icons/bi";
 function ForgetPass({ className, ...props }) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -104,7 +105,6 @@ function ForgetPass({ className, ...props }) {
       });
       setSendmail(true);
     } catch (error) {
-      console.log(error);
       toast.error("something went wrong while sending mail ", {
         position: "top-right",
         autoClose: 3000,
@@ -152,21 +152,30 @@ function ForgetPass({ className, ...props }) {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>
-                  <div className="flex justify-between items-center gap-3">
-                    <Input
+                  <div className="flex items-center gap-3 rounded-md border bg-background px-3 py-2 text-sm focus:ring-ring">
+                    <input
                       id="password"
                       name="password"
                       type={showPassword ? "text" : "password"}
                       value={formData.password}
                       onChange={handleChange}
                       required
+                       className=" block w-full bg-transparent outline-none border-none "
                     />
-                    <img
+                    {/* <img
                       src={showPassword ? "/openeye.svg" : "/closeeye.svg"}
                       alt="Toggle Password Visibility"
                       onClick={() => setShowPassword(!showPassword)}
                       className="cursor-pointer w-5 h-5"
-                    />
+                    /> */
+                    showPassword ? (
+                      <BiSolidHide className="cursor-pointer text-foreground text-lg"
+                      onClick={() => setShowPassword(!showPassword)} />
+                    ) : (
+                      <FaEye className="cursor-pointer text-foreground text-lg"
+                      onClick={() => setShowPassword(!showPassword)} />
+                    )
+                    }
                   </div>
                   {errors.password && (
                     <p className="text-sm text-red-500">{errors.password}</p>

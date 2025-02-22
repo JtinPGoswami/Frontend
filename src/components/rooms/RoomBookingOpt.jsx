@@ -31,13 +31,23 @@ const RoomBookingOpt = ({ Room, seeker }) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light ",
+          theme: "light",
         });
       })
       .catch((err) => {
-        console.error("Failed to copy Phone number: ", err);
+        toast.error("Failed to copy phone number!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   };
+  
 
   const subject = `Inquiry Regarding Listed Room: ${roomName}`;
   const body = `Dear Landlord,

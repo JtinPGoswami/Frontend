@@ -111,7 +111,44 @@
   * {
     @apply border-border;
   }
+
+
   body {
     @apply bg-background text-foreground;
+  }
+
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    @apply appearance-none m-0;
+  }
+
+  input[type="number"] {
+    @apply appearance-none; /* Removes spinner on Firefox */
+    -moz-appearance: textfield; /* Removes spinner on older Firefox */
+  }
+
+  /* Disable scroll increment/decrement */
+  input[type="number"] {
+    @apply focus:outline-none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Disable number input scroll behavior */
+  input[type="number"]:focus {
+    outline: none;
+  }
+
+  /* Prevent scrolling */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* For modern browsers */
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
   }
 }

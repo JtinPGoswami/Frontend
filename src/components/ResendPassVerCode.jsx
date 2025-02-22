@@ -10,7 +10,7 @@ const ResendPasswordVerificationButton = ({ formData }) => {
     setIsDisabled(true);
     setTimer(60);
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URI}/user/send/pass/code`,
         formData
       );
@@ -22,10 +22,23 @@ const ResendPasswordVerificationButton = ({ formData }) => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
     } catch (error) {
-      console.log(error);
+      toast.error(
+        error.response?.data?.message ||
+          "Failed to resend verification email. Please try again.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     }
   };
 
@@ -52,7 +65,7 @@ const ResendPasswordVerificationButton = ({ formData }) => {
         <button
           onClick={handleResendClick}
           disabled={isDisabled}
-          className={`sm:px-4  px-2 sm:py-2 py-1 text-white sm:text-sm text-xs font-semibold rounded-lg ${
+          className={`sm:px-4 px-2 sm:py-2 py-1 text-white sm:text-sm text-xs font-semibold rounded-lg ${
             isDisabled
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-blue-500 hover:bg-blue-600"

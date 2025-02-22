@@ -72,7 +72,6 @@ const OTPInput = () => {
         theme: "light ",
       });
     } catch (error) {
-      console.log(error);
 
       setMessage(error.response.data.message);
       toast.error(error.response.data.message, {

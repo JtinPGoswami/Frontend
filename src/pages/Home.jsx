@@ -8,8 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Contect from "./Contact";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Pagination, Autoplay } from "swiper/modules";
+
 const Home = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,8 +25,25 @@ const Home = () => {
           `${import.meta.env.VITE_API_URI}/user/get/all/rooms`
         );
         setRooms(response.data.data);
+        toast.success("Rooms loaded successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
       } catch (error) {
-        console.error("Error while fetching rooms: ", error);
+        toast.error("Failed to load rooms. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
       } finally {
         setLoading(false);
       }
@@ -32,16 +51,34 @@ const Home = () => {
 
     getAllListedRooms();
   }, []);
+
   useEffect(() => {
     const getLandLords = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          ` ${import.meta.env.VITE_API_URI}/user/get/landlords`
+          `${import.meta.env.VITE_API_URI}/user/get/landlords`
         );
         setLandLords(response.data.data);
+        toast.success("Landlords loaded successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
       } catch (error) {
-        console.log("Error while fetching LandLords");
+        toast.error("Failed to load landlords. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "light",
+        });
       } finally {
         setLoading(false);
       }
@@ -81,7 +118,7 @@ const Home = () => {
               </div>
             </Swiper>
           </div>
-          <div className=" w-[90%] mx-auto md:mt-20 sm:mt-14 mt-10">
+          <div className="w-[90%] mx-auto md:mt-20 sm:mt-14 mt-10">
             <h3 className="text-primary md:text-3xl sm:text-2xl text-lg font-bold text-center mb-6">
               Landlords on Room On Rent
             </h3>
@@ -115,7 +152,6 @@ const Home = () => {
                     key={landlord._id}
                     className="flex justify-center items-center"
                   >
-                    {" "}
                     <LandLordCard landlord={landlord} />
                   </SwiperSlide>
                 ))}

@@ -41,7 +41,16 @@ const Usercard = ({ user, deleteUserCallback }) => {
       });
       deleteUserCallback(user._id);
     } catch (error) {
-      console.log("error while deleting user ", error);
+      toast.error("error while deleting user", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light ",
+      });
     } finally {
       setLoading(false);
     }

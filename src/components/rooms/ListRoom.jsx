@@ -83,7 +83,16 @@ export function ListRoomForm() {
 
       navigate("/profile");
     } catch (error) {
-      console.error("Error listing room:", error);
+      toast.error("Error listing room"), {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light ",
+      }
     } finally {
       setLoading(false);
     }

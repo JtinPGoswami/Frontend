@@ -47,11 +47,8 @@ const AdminProfile = ({ user }) => {
           progress: undefined,
           theme: "light ",
         });
-      } else {
-        console.error("Unexpected response structure:", response.data);
-      }
+      } 
     } catch (error) {
-      console.error("Error updating profile picture:", error);
       toast.error("Profile Pic update fail ", {
         position: "top-right",
         autoClose: 3000,

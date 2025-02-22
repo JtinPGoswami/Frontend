@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           {/* Logo and Description */}
           <div className="flex flex-col items-center md:items-start">
-            <h1 className="text-2xl font-bold text-primary">Room for Rent</h1>
+            <h1 className="text-2xl font-bold text-primary">Room On Rent</h1>
             <p className="mt-2 text-sm text-muted-foreground">
               Find your perfect room at affordable prices. Your comfort is our
               priority. Explore listings and make your search easy.
@@ -105,7 +105,7 @@ const Footer = () => {
 
         {/* Copyright Section */}
         <div className="mt-4 text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Room for Rent. All rights reserved.
+          &copy; {new Date().getFullYear()} Room On Rent. All rights reserved.
         </div>
       </div>
     </footer>

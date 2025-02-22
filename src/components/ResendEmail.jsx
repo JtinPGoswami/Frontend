@@ -10,7 +10,7 @@ const ResendVerificationButton = ({ formData }) => {
     setIsDisabled(true);
     setTimer(60);
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URI}/user/resend/var/code`,
         formData
       );
@@ -18,14 +18,23 @@ const ResendVerificationButton = ({ formData }) => {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to resend email. Please try again.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -51,14 +60,9 @@ const ResendVerificationButton = ({ formData }) => {
       {!isDisabled && (
         <button
           onClick={handleResendClick}
-          disabled={isDisabled}
-          className={`sm:px-4 px-2 sm:py-2 py-1 text-white sm:text-sm text-xs font-semibold rounded-lg ${
-            isDisabled
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
-          }`}
+          className="sm:px-4 px-2 sm:py-2 py-1 text-white sm:text-sm text-xs font-semibold rounded-lg bg-blue-500 hover:bg-blue-600"
         >
-          {isDisabled ? "Resend Disabled" : "Resend Verification Email"}
+          Resend Verification Email
         </button>
       )}
       {isDisabled && (

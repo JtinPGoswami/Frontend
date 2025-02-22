@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../utils/Spinner";
+import { FaEye } from "react-icons/fa";
+import { BiSolidHide } from "react-icons/bi";
 
 const UpdateUserRole = () => {
   const { role, setUser } = useUser();
@@ -46,7 +48,6 @@ const UpdateUserRole = () => {
         theme: "light ",
       });
     } catch (error) {
-      console.error(`Failed to send email:`, error);
       toast.error("Failed to send email", {
         position: "top-right",
         autoClose: 3000,
@@ -80,31 +81,42 @@ const UpdateUserRole = () => {
         role === "landlord"
           ? `${import.meta.env.VITE_API_URI}/user/update/to-seeker`
           : `${import.meta.env.VITE_API_URI}/user/update/to-landlord`;
-
+  
       const response = await axios.post(endpoint, formData, {
         withCredentials: true,
       });
-
+  
       toast.success("Role changed successfully", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
+  
       localStorage.removeItem("role");
       localStorage.removeItem("selectedUser");
       setUser(null);
       navigate("/login");
     } catch (error) {
-      console.error(`Failed to update role:`, error);
+      toast.error("Failed to update role. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-background relative">
@@ -125,22 +137,30 @@ const UpdateUserRole = () => {
             >
               Password
             </label>
-            <div className="flex justify-between items-center gap-3">
+            <div className="flex items-center gap-3 rounded-md border bg-background px-3 py-2 text-sm focus:ring-ring">
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                 className=" block w-full bg-transparent outline-none border-none "
                 required
               />
-              <img
+              {/* <img
                 src={showPassword ? "/openeye.svg" : "/closeeye.svg"}
                 alt="Toggle Password Visibility"
                 onClick={() => setShowPassword(!showPassword)}
                 className="cursor-pointer w-5 h-5"
-              />
+              /> */
+              showPassword ? (
+                <BiSolidHide className="cursor-pointer text-foreground text-lg"
+                onClick={() => setShowPassword(!showPassword)} />
+              ) : (
+                <FaEye className="cursor-pointer text-foreground text-lg"
+                onClick={() => setShowPassword(!showPassword)} />
+              )
+              }
             </div>
           </div>
 

@@ -33,7 +33,6 @@ const DeleteUser = () => {
         progress: undefined,
         theme: "light ",
       });
-      console.log("user deletion failed ", error);
     }
   };
 

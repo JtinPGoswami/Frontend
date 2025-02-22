@@ -2,20 +2,35 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import LandLordCard from "./LandLordCard";
 import Spinner from "../utils/Spinner";
+import { toast } from "react-toastify";
 
 const LandLords = () => {
   const [LandLords, setLandLords] = useState([]);
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const getLandLords = async () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          ` ${import.meta.env.VITE_API_URI}/user/get/landlords`
+          `${import.meta.env.VITE_API_URI}/user/get/landlords`
         );
         setLandLords(response.data.data);
       } catch (error) {
-        console.log("Error while fetching LandLords", error);
+        toast.error(
+          error.response?.data?.message ||
+            "Error while fetching landlords. Please try again.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       } finally {
         setLoading(false);
       }

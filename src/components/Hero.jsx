@@ -8,7 +8,7 @@ const Hero = () => {
         {/* Text Content */}
         <div className="max-w-xl text-center md:text-left">
           <h1 className="text-4xl font-bold text-primary md:text-5xl">
-            Welcome to Room for Rent
+            Welcome to Room On Rent
           </h1>
           <p className="mt-4 text-lg text-muted-foreground md:mt-6">
             Discover your perfect space from our wide selection of affordable
@@ -34,7 +34,7 @@ const Hero = () => {
         <div className="w-full max-w-lg md:w-1/2">
           <img
             src="img_8.jpg"
-            alt="Room for Rent Hero"
+            alt="Room On Rent Hero"
             className="rounded-lg shadow-lg opacity-80"
           />
         </div>

@@ -39,7 +39,6 @@ const DeleteRoomByAdmin = () => {
       });
       navigate("/rooms");
     } catch (error) {
-      console.log("error while deleting the room :", error);
       toast.error("Room  deletion failed ", {
         position: "top-right",
         autoClose: 3000,

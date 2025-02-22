@@ -10,9 +10,11 @@ import GetLogInUser from "../../utils/GetLogInUser";
 const LandLordProfile = ({ user }) => {
   const { setRole, setUser } = useUser();
   const navigate = useNavigate();
-  const [profilePic, setProfilePic] = useState(user.ProfilePic);
+  const [profilePic, setProfilePic] = useState(user.ProfilePic || "");
   const [loading, setLoading] = useState(false);
+
   GetLogInUser();
+
   useEffect(() => {
     setRole(user.role);
   }, [user.role, setRole]);
@@ -38,24 +40,30 @@ const LandLordProfile = ({ user }) => {
         }
       );
 
-      if (response.data.data && response.data.data.newuser.ProfilePic) {
-        setProfilePic(response.data.data.newuser.ProfilePic);
-        setUser(response.data.data.newuser);
-        toast.success("Profile Pic update successfully ", {
+
+      if (response.data?.data?.newUser?.ProfilePic) {
+        const updatedProfilePic = response.data.data.newUser.ProfilePic;
+
+        setProfilePic(updatedProfilePic);
+        setUser((prevUser) => ({
+          ...prevUser,
+          ProfilePic: updatedProfilePic,
+        }));
+
+        toast.success("Profile picture updated successfully!", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
-          closeOnClick: false,
+          closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
-          progress: undefined,
-          theme: "light ",
+          theme: "light",
         });
       } else {
-        console.error("Unexpected response structure:", response.data);
+        toast.error("Profile updated, but image not received.");
       }
     } catch (error) {
-      console.error("Error updating profile picture:", error);
+      toast.error("Failed to update profile picture. Try again!");
     } finally {
       setLoading(false);
     }
@@ -73,9 +81,9 @@ const LandLordProfile = ({ user }) => {
         <Spinner />
       ) : (
         <section className="bg-background flex items-center justify-center">
-          <div className="container mx-auto px-6 text-center md:text-left max-w-4xl w-full bg-primary-foreground  shadow-lg rounded-lg p-8">
+          <div className="container mx-auto px-6 text-center md:text-left max-w-4xl w-full bg-primary-foreground shadow-lg rounded-lg p-8">
             <div className="w-[90%] mx-auto flex justify-between items-center">
-              <h2 className="text-3xl font-bold  text-primary">Profile</h2>
+              <h2 className="text-3xl font-bold text-primary">Profile</h2>
               <Link
                 to="/update/role"
                 className="text-blue-400 underline hover:no-underline"
@@ -88,7 +96,7 @@ const LandLordProfile = ({ user }) => {
               {/* Profile Picture with Hover Effect */}
               <div className="flex justify-center relative">
                 {/* Profile Picture */}
-                <div className="w-32 h-32 rounded-full flex items-center justify-center bg-muted">
+                <div className="w-32 h-32 rounded-full flex items-center justify-center bg-muted relative">
                   <img
                     src={
                       profilePic ||
@@ -141,14 +149,14 @@ const LandLordProfile = ({ user }) => {
                     Listed Rooms
                   </label>
                 </div>
-                <Link to="/list/room" className=" font-medium text-blue-400">
+                <Link to="/list/room" className="font-medium text-blue-400">
                   List a new Room now
                 </Link>
                 <div className="flex sm:flex-row flex-col justify-between item-center w-full">
-                  <button className=" float-end border border-gray-400 hover:bg-primary hover:text-primary-foreground py-1 px-2 bg-primary-foreground text-primary rounded-lg mt-4">
+                  <button className="border border-gray-400 hover:bg-primary hover:text-primary-foreground py-1 px-2 bg-primary-foreground text-primary rounded-lg mt-4">
                     <Link to="/update/password">Update your password</Link>
                   </button>
-                  <button className=" float-end border border-gray-400 hover:bg-primary hover:text-primary-foreground py-1 px-2 bg-primary-foreground text-primary rounded-lg mt-4">
+                  <button className="border border-gray-400 hover:bg-primary hover:text-primary-foreground py-1 px-2 bg-primary-foreground text-primary rounded-lg mt-4">
                     <Link to="/update/profile">Update your profile</Link>
                   </button>
                 </div>

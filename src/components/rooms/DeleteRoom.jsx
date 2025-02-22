@@ -37,7 +37,6 @@ const DeleteRoom = () => {
         progress: undefined,
         theme: "light ",
       });
-      console.log("error while deleting the room :", error);
     }
   };
   return (

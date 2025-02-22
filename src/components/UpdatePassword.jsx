@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../utils/Spinner";
 import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa";
+import { BiSolidHide } from "react-icons/bi";
 
 const UpdatePassword = () => {
   const navigate = useNavigate();
@@ -22,28 +24,39 @@ const UpdatePassword = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URI}/user/update/password`,
         password,
         { withCredentials: true }
       );
 
-      toast.success("Password updated successfully!", {
+      toast.success("Your password has been updated successfully!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
-        closeOnClick: false,
+        closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
+
       navigate("/profile");
     } catch (error) {
-      console.log(error);
-      console.log(
-        error.response?.data?.message || "An error occurred. Please try again."
-      );
+      const errorMessage =
+        error.response?.data?.message ||
+        "An unexpected error occurred. Please try again later.";
+
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       setLoading(false);
     }
@@ -69,96 +82,100 @@ const UpdatePassword = () => {
               Update Password
             </h2>
             <form onSubmit={handleSubmit}>
-              {/* Old Password Field */}
-              <div className="mb-4 ">
+              <div className="mb-4">
                 <label
                   htmlFor="oldPassword"
                   className="block text-sm font-medium text-foreground"
                 >
                   Old Password
                 </label>
-                <div className="flex justify-between items-center gap-3 ">
+                <div className="flex justify-between items-center gap-3 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1 w-full">
                   <input
                     type={showPassword.oldPassword ? "text" : "password"}
                     id="oldPassword"
                     name="oldPassword"
                     value={password.oldPassword}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1"
+                    className="bg-transparent outline-none border-none w-full"
                     required
                   />
-                  <img
-                    src={
-                      showPassword.oldPassword
-                        ? "/openeye.svg"
-                        : "/closeeye.svg"
-                    }
-                    alt="Toggle Password Visibility"
-                    onClick={() => togglePasswordVisibility("oldPassword")}
-                    className=" cursor-pointer w-5 h-5"
-                  />
+                  {showPassword.oldPassword ? (
+                    <BiSolidHide
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => togglePasswordVisibility("oldPassword")}
+                    />
+                  ) : (
+                    <FaEye
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => togglePasswordVisibility("oldPassword")}
+                    />
+                  )}
                 </div>
               </div>
 
-              {/* New Password Field */}
-              <div className="mb-4 ">
+              <div className="mb-4">
                 <label
                   htmlFor="newPassword"
                   className="block text-sm font-medium text-foreground"
                 >
                   New Password
                 </label>
-                <div className="flex justify-between items-center gap-3">
+                <div className="flex justify-between items-center gap-3 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1">
                   <input
                     type={showPassword.newPassword ? "text" : "password"}
                     id="newPassword"
                     name="newPassword"
                     value={password.newPassword}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1"
+                    className="bg-transparent outline-none border-none w-full"
                     required
                   />
-                  <img
-                    src={
-                      showPassword.newPassword
-                        ? "/openeye.svg"
-                        : "/closeeye.svg"
-                    }
-                    alt="Toggle Password Visibility"
-                    onClick={() => togglePasswordVisibility("newPassword")}
-                    className="cursor-pointer w-5 h-5"
-                  />
+                  {showPassword.newPassword ? (
+                    <BiSolidHide
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => togglePasswordVisibility("newPassword")}
+                    />
+                  ) : (
+                    <FaEye
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() => togglePasswordVisibility("newPassword")}
+                    />
+                  )}
                 </div>
               </div>
 
-              {/* Confirm New Password Field */}
-              <div className="mb-4 ">
+              <div className="mb-4">
                 <label
                   htmlFor="confNewPassword"
                   className="block text-sm font-medium text-foreground"
                 >
                   Confirm New Password
                 </label>
-                <div className="flex justify-between items-center gap-3">
+                <div className="flex justify-between items-center gap-3 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1">
                   <input
                     type={showPassword.confNewPassword ? "text" : "password"}
                     id="confNewPassword"
                     name="confNewPassword"
                     value={password.confNewPassword}
                     onChange={handleChange}
-                    className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1"
+                    className="bg-transparent outline-none border-none w-full"
                     required
                   />
-                  <img
-                    src={
-                      showPassword.confNewPassword
-                        ? "/openeye.svg"
-                        : "/closeeye.svg"
-                    }
-                    alt="Toggle Password Visibility"
-                    onClick={() => togglePasswordVisibility("confNewPassword")}
-                    className="cursor-pointer w-5 h-5"
-                  />
+                  {showPassword.confNewPassword ? (
+                    <BiSolidHide
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() =>
+                        togglePasswordVisibility("confNewPassword")
+                      }
+                    />
+                  ) : (
+                    <FaEye
+                      className="cursor-pointer text-foreground text-lg"
+                      onClick={() =>
+                        togglePasswordVisibility("confNewPassword")
+                      }
+                    />
+                  )}
                 </div>
               </div>
 

@@ -45,8 +45,8 @@ const updateUser = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        ` ${import.meta.env.VITE_API_URI}/user/update/user`,
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URI}/user/update/user`,
         formData,
         {
           withCredentials: true,
@@ -54,7 +54,7 @@ const updateUser = () => {
       );
       setMessage(response.data.message || "Profile update successful!");
       setUser(response.data.data);
-
+  
       toast.success("Profile update successful", {
         position: "top-right",
         autoClose: 5000,
@@ -63,19 +63,29 @@ const updateUser = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light ",
+        theme: "light",
       });
       navigate("/profile");
-    } catch (error) {
-      console.log(error);
-
-      setMessage(
-        error.response?.data?.message || "An error occurred. Please try again."
-      );
+    } catch (error) {  
+      const errorMessage =
+        error.response?.data?.message || "An error occurred. Please try again.";
+      setMessage(errorMessage);
+  
+      toast.error(errorMessage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <>
