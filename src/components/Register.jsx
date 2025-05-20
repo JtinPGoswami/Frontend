@@ -9,7 +9,6 @@ import { BiSolidHide } from "react-icons/bi";
 const Register = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
     name: "",
     email: "",
     phone: "",
@@ -40,7 +39,6 @@ const Register = () => {
       );
 
       setFormData({
-        username: "",
         name: "",
         email: "",
         phone: "",
@@ -81,7 +79,6 @@ const Register = () => {
   const handleRoleToggle = () => {
     setRole((prevRole) => (prevRole === "Explorer" ? "Landlord" : "Explorer"));
     setFormData({
-      username: "",
       name: "",
       email: "",
       phone: "",
@@ -97,26 +94,12 @@ const Register = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex justify-center items-center min-h-screen bg-background">
-          <div className="w-full max-w-md rounded-lg bg-card shadow-md p-8">
+        <div className="flex justify-center items-center min-h-screen  bg-background overflow-hidden">
+          <div className="w-full max-w-md rounded-lg bg-card shadow-xl border px-8 py-6">
             <h2 className="text-2xl font-bold text-center text-primary mb-6">
               Register
             </h2>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-foreground">
-                  Username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border bg-background px-3 py-2 text-sm focus:ring-ring"
-                  required
-                />
-              </div>
-
               <div className="mb-4">
                 <label className="block text-sm font-medium text-foreground">
                   Name
@@ -166,11 +149,15 @@ const Register = () => {
                     className="cursor-pointer w-5 h-5"
                   /> */
                     showPassword ? (
-                      <BiSolidHide className="cursor-pointer text-foreground text-lg"
-                      onClick={() => setShowPassword(!showPassword)} />
+                      <BiSolidHide
+                        className="cursor-pointer text-foreground text-lg"
+                        onClick={() => setShowPassword(!showPassword)}
+                      />
                     ) : (
-                      <FaEye className="cursor-pointer text-foreground text-lg"
-                      onClick={() => setShowPassword(!showPassword)} />
+                      <FaEye
+                        className="cursor-pointer text-foreground text-lg"
+                        onClick={() => setShowPassword(!showPassword)}
+                      />
                     )
                   }
                 </div>

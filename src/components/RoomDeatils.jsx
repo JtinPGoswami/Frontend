@@ -22,7 +22,7 @@ const RoomDetails = () => {
 
   return (
     <section className="bg-background py-16">
-      <div className="container mx-auto px-6 md:w-4/5 w-[95%]">
+      <div className="container mx-auto px-6  w-[95%]">
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/2 w-full flex-col gap-y-3">
             <Swiper

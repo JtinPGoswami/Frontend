@@ -44,7 +44,9 @@ const ListedRooms = () => {
                 {room.description}
               </p>
               <div className="mt-4 w-full flex justify-between items-center">
-                <p className="text-lg text-primary">Rent: ${room.rent}/month</p>
+                <p className="text-lg text-primary">
+                  Rent: &#8377;{room.rent}/month
+                </p>
                 <Link
                   to="/room/details"
                   onClick={() => setSelectedRoom(room)}

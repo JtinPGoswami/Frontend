@@ -14,8 +14,8 @@ const Contact = () => {
   };
 
   return (
-    <section className="bg-background md:py-16 py-8">
-      <div className="container md:w-3/5 w-[85%] mx-auto px-6 text-center md:text-left">
+    <section className="bg-background md:py-16  ">
+      <div className="container lg:w-4/5 w-full mx-auto px-3 text-center md:text-left">
         <h2 className="lg:text-3xl md:text-xl text-lg font-bold text-primary">
           Contact Us
         </h2>

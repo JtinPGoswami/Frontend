@@ -10,7 +10,6 @@ const AdminRegister = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    username: "",
     name: "",
     email: "",
     password: "",
@@ -35,7 +34,6 @@ const AdminRegister = () => {
       );
 
       setFormData({
-        username: "",
         name: "",
         email: "",
         password: "",
@@ -79,29 +77,12 @@ const AdminRegister = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="flex justify-center items-center min-h-screen bg-background">
-          <div className="w-full max-w-md rounded-lg bg-card shadow-md p-8">
+        <div className="flex justify-center items-center min-h-screen bg-background overflow-hidden">
+          <div className="w-full max-w-md rounded-lg bg-card shadow-md p-8 border">
             <h2 className="text-2xl font-bold text-center text-primary mb-6">
               Register
             </h2>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium text-foreground"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-ring focus:ring-1"
-                  required
-                />
-              </div>
               <div className="mb-4">
                 <label
                   htmlFor="name"

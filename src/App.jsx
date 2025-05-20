@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import LoginForm from "./components/Login-form";
@@ -32,101 +37,139 @@ import ForgetPass from "./components/ForgetPass";
 import LandLords from "./components/LandLords";
 import AdminRegister from "./components/AdminRegister";
 import UpdateRoomDetails from "./components/rooms/UpdateRoom";
+import { useEffect } from "react";
 
 function App() {
   return (
     <UserProvider>
       <RoomProvider>
         <ThemeProvider>
-          <ToastContainer />
           <Router>
-            <Header />
-            <main className="container mx-auto p-4">
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/terms" element={<TermsAndCondition />} />
-                <Route path="/privacy" element={<Privacypolicy />} />
-
-                {/* Auth Routes */}
-                <Route
-                  path="/login"
-                  element={<PrivateRouteLogOut element={<LoginForm />} />}
-                />
-                <Route
-                  path="/register"
-                  element={<PrivateRouteLogOut element={<Register />} />}
-                />
-                <Route path="/verify/email" element={<OtpInput />} />
-                <Route
-                  path="/forget/pass"
-                  element={<PrivateRouteLogOut element={<ForgetPass />} />}
-                />
-                <Route
-                  path="/update/password"
-                  element={<PrivateRouteLogIn element={<UpdatePassword />} />}
-                />
-
-                {/* User Management */}
-                <Route
-                  path="/users"
-                  element={<PrivateRouteLogIn element={<Users />} />}
-                />
-                <Route
-                  path="/update/profile"
-                  element={<PrivateRouteLogIn element={<UpdateUsers />} />}
-                />
-                <Route
-                  path="/update/role"
-                  element={<PrivateRouteLogIn element={<UpdateUserRole />} />}
-                />
-                <Route
-                  path="/admin/register"
-                  element={<PrivateRouteLogOut element={<AdminRegister />} />}
-                />
-
-                {/* Room Management */}
-                <Route
-                  path="/rooms"
-                  element={<PrivateRouteLogIn element={<Room />} />}
-                />
-                <Route
-                  path="/room/details"
-                  element={<PrivateRouteLogIn element={<RoomDetails />} />}
-                />
-                <Route
-                  path="/listed/room"
-                  element={<PrivateRouteLogIn element={<ListedRooms />} />}
-                />
-                <Route
-                  path="/list/room"
-                  element={<PrivateRouteLandlord element={<ListRoomForm />} />}
-                />
-                <Route
-                  path="/update/room/details"
-                  element={
-                    <PrivateRouteLandlord element={<UpdateRoomDetails />} />
-                  }
-                />
-
-                {/* Profile & Landlord Management */}
-                <Route
-                  path="/profile"
-                  element={<PrivateRouteLogIn element={<Profile />} />}
-                />
-                <Route
-                  path="/landlords"
-                  element={<PrivateRouteLogIn element={<LandLords />} />}
-                />
-              </Routes>
-            </main>
-            <Footer />
+            <AppContent />
           </Router>
         </ThemeProvider>
       </RoomProvider>
     </UserProvider>
+  );
+}
+
+function AppContent() {
+  useEffect(() => {
+    const handleWheel = (event) => {
+      if (
+        document.activeElement.type === "number" &&
+        document.activeElement === document.querySelector(":focus")
+      ) {
+        document.activeElement.blur(); // Unfocus to stop scroll
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
+
+  const location = useLocation();
+  const hideHeaderFooterPaths = [
+    "/login",
+    "/register",
+    "/forget/pass",
+    "/admin/register",
+    "/verify/email",
+  ];
+  const shouldHideHeaderFooter = hideHeaderFooterPaths.includes(
+    location.pathname
+  );
+
+  return (
+    <>
+      <ToastContainer />
+      {!shouldHideHeaderFooter && <Header />}
+      <main
+        className={`container mx-auto  ${!shouldHideHeaderFooter && "p-4"}`}
+      >
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/terms" element={<TermsAndCondition />} />
+          <Route path="/privacy" element={<Privacypolicy />} />
+
+          {/* Auth Routes */}
+          <Route
+            path="/login"
+            element={<PrivateRouteLogOut element={<LoginForm />} />}
+          />
+          <Route
+            path="/register"
+            element={<PrivateRouteLogOut element={<Register />} />}
+          />
+          <Route path="/verify/email" element={<OtpInput />} />
+          <Route
+            path="/forget/pass"
+            element={<PrivateRouteLogOut element={<ForgetPass />} />}
+          />
+          <Route
+            path="/update/password"
+            element={<PrivateRouteLogIn element={<UpdatePassword />} />}
+          />
+
+          {/* User Management */}
+          <Route
+            path="/users"
+            element={<PrivateRouteLogIn element={<Users />} />}
+          />
+          <Route
+            path="/update/profile"
+            element={<PrivateRouteLogIn element={<UpdateUsers />} />}
+          />
+          <Route
+            path="/update/role"
+            element={<PrivateRouteLogIn element={<UpdateUserRole />} />}
+          />
+          <Route
+            path="/admin/register"
+            element={<PrivateRouteLogOut element={<AdminRegister />} />}
+          />
+
+          {/* Room Management */}
+          <Route
+            path="/rooms"
+            element={<PrivateRouteLogIn element={<Room />} />}
+          />
+          <Route
+            path="/room/details"
+            element={<PrivateRouteLogIn element={<RoomDetails />} />}
+          />
+          <Route
+            path="/listed/room"
+            element={<PrivateRouteLogIn element={<ListedRooms />} />}
+          />
+          <Route
+            path="/list/room"
+            element={<PrivateRouteLandlord element={<ListRoomForm />} />}
+          />
+          <Route
+            path="/update/room/details"
+            element={<PrivateRouteLandlord element={<UpdateRoomDetails />} />}
+          />
+
+          {/* Profile & Landlord Management */}
+          <Route
+            path="/profile"
+            element={<PrivateRouteLogIn element={<Profile />} />}
+          />
+          <Route
+            path="/landlords"
+            element={<PrivateRouteLogIn element={<LandLords />} />}
+          />
+        </Routes>
+      </main>
+      {!shouldHideHeaderFooter && <Footer />}
+    </>
   );
 }
 

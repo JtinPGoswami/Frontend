@@ -46,7 +46,7 @@ const Home = () => {
         setLandLords(response.data.data);
        
       } catch (error) {
-        
+      
       } finally {
         setLoading(false);
       }

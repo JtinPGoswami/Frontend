@@ -6,7 +6,7 @@ import { useUser } from "../context/UserContext";
 import Spinner from "../utils/Spinner";
 import { toast } from "react-toastify";
 
-const updateUser = () => {
+const UpdateUser = () => {
   const { user, setUser } = useUser();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -54,7 +54,7 @@ const updateUser = () => {
       );
       setMessage(response.data.message || "Profile update successful!");
       setUser(response.data.data);
-  
+
       toast.success("Profile update successful", {
         position: "top-right",
         autoClose: 5000,
@@ -66,11 +66,11 @@ const updateUser = () => {
         theme: "light",
       });
       navigate("/profile");
-    } catch (error) {  
+    } catch (error) {
       const errorMessage =
         error.response?.data?.message || "An error occurred. Please try again.";
       setMessage(errorMessage);
-  
+
       toast.error(errorMessage, {
         position: "top-right",
         autoClose: 5000,
@@ -85,7 +85,6 @@ const updateUser = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -265,4 +264,4 @@ const updateUser = () => {
   );
 };
 
-export default updateUser;
+export default UpdateUser;
